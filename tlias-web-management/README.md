@@ -10,7 +10,7 @@
 - Spring AOP
 - MyBatis
 - Lombok
-- H2 / MySQL（環境に応じて切替）
+- MySQL（環境に応じて切替）
 - Maven
 
 ## 🧩 実装済み機能
