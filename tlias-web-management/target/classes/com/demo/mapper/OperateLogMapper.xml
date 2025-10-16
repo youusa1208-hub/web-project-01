@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.OperateLogMapper">
+
+    <!-- 查询所有操作日志-->
+    <select id="list" resultType="com.demo.pojo.OperateLog">
+        select
+            log.*,e.name as operateEmpName from  operate_log log left join emp e on e.id = log.operate_emp_id
+    </select>
+</mapper>

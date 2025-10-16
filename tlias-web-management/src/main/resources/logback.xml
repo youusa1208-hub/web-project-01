@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- コンソール出力 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--フォーマット出力：%d は日付を表し、%thread はスレッド名を表し、%-5level はレベルを左寄せで5文字幅で表示、%logger はログ記録器の名称を表示、%msg はログメッセージを表し、%n は改行文字を表す -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}-%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- システムファイル出力 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- ログファイル出力のファイル名、%i はシリアル番号を表す -->
+            <FileNamePattern>D:/java/log/tlias-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+            <!-- 保持する履歴ログファイルの最大数 -->
+            <MaxHistory>30</MaxHistory>
+            <!-- 最大ファイルサイズ、このサイズを超えると新しいファイルへのローテーションがトリガーされる、デフォルトは10MB -->
+            <maxFileSize>10MB</maxFileSize>
+        </rollingPolicy>
+
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--フォーマット出力：%d は日付を表し、%thread はスレッド名を表し、%-5level はレベルを左寄せで5文字幅で表示、%msg はログメッセージを表し、%n は改行文字を表す -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}-%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ログ出力レベル -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>

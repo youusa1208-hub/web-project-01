@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.EmpExprMapper">
+
+    <!--    従業員の業務経験情報を一括保存
+            foreach タグ：
+                collection： 繰り返し対象のコレクション
+                item：繰り返しで取得した要素
+                separator：各ループ間の区切り文字
+    -->
+    <insert id="insertBatch">
+        insert into emp_expr(emp_id, begin, end, company, job) VALUES
+        <foreach collection="exprList" item="expr" separator=",">
+            (#{expr.empId},#{expr.begin},#{expr.end},#{expr.company},#{expr.job})
+        </foreach>
+    </insert>
+
+    <!--従業員IDによる従業員業務経験情報の一括削除-->
+    <delete id="deleteByEmpIds">
+        delete from emp_expr where emp_id in
+        <foreach collection="empIds" item="empId" separator="," open="(" close=")">
+            #{empId}
+        </foreach>
+    </delete>
+
+</mapper>
